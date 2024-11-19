@@ -68,8 +68,13 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+
+function canQueenCaptureKing(queen, king) {
+  return (
+    queen.x === king.x ||
+    queen.y === king.y ||
+    Math.abs(queen.x - king.x) === Math.abs(queen.y - king.y)
+  );
 }
 
 /**
@@ -181,8 +186,14 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) {
+      return i;
+    }
+  }
+
+  return -1;
 }
 
 /**
@@ -201,15 +212,13 @@ function getIndexOf(/* str, letter */) {
  *  12345, 6    => false
  */
 function isContainNumber(num, digit) {
-  let number = num;
-  while (number > 0) {
-    const current = number % 10;
+  const stringifyNumber = String(num);
+  const stringifyDigit = String(digit);
 
-    if (current === digit) {
+  for (let i = 0; i < stringifyNumber.length; i += 1) {
+    if (stringifyNumber[i] === stringifyDigit) {
       return true;
     }
-
-    number = Math.floor(number / 10);
   }
 
   return false;
