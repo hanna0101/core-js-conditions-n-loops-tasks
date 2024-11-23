@@ -153,40 +153,55 @@ function convertToRomanNumerals(num) {
  *  '1950.2'  => 'one nine five zero point two'
  */
 
-// const numberStrings = {
-//   0: 'zero',
-//   1: 'one',
-//   2: 'two',
-//   3: 'three',
-//   4: 'four',
-//   5: 'five',
-//   6: 'six',
-//   7: 'seven',
-//   8: 'eight',
-//   9: 'nine',
-// };
-//
-// let result = '';
-//
-// for (let i = 0; i < numberStr.length; i += 1) {
-//   const char = numberStr[i];
-//
-//   switch (char) {
-//     case '-':
-//       result += `minus `;
-//       break;
-//     case '.':
-//     case ',':
-//       result += `point `;
-//       break;
-//     default:
-//       result += `${numberStrings[char]} `;
-//   }
-// }
-//
-// return result.trim();
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  const numberStrings = {
+    0: 'zero',
+    1: 'one',
+    2: 'two',
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
+    7: 'seven',
+    8: 'eight',
+    9: 'nine',
+  };
+
+  let result = '';
+
+  for (let i = 0; i < numberStr.length; i += 1) {
+    const char = numberStr[i];
+
+    if (i === numberStr.length - 1) {
+      switch (char) {
+        case '-':
+          result += `minus`;
+          break;
+        case '.':
+        case ',':
+          result += `point`;
+          break;
+        default:
+          result += `${numberStrings[char]}`;
+      }
+    }
+
+    if (i < numberStr.length - 1) {
+      switch (char) {
+        case '-':
+          result += `minus `;
+          break;
+        case '.':
+        case ',':
+          result += `point `;
+          break;
+        default:
+          result += `${numberStrings[char]} `;
+      }
+    }
+  }
+
+  return result;
 }
 
 /**
